@@ -1,5 +1,24 @@
 <? require "validador_acesso.php" ?>
 
+<?php
+
+//array de chamados
+
+$chamados = array();
+//abrir arquivo.hd
+$arquivo = fopen('bd.txt', 'r');
+
+//enquato houverem registros (linhas) a serem recuperados
+while (!feof($arquivo)) { //testa pelo fim do arquivo
+  //linhas
+  $registro = fgets($arquivo); //recupera a linha
+  $chamados[] = $registro;
+}
+
+//fechando o arquivo.hd
+fclose($arquivo);
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,34 +62,44 @@
 
           <div class="card-body">
 
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
+            <div class="card-consultar-chamado">
+              <div class="card">
+                <div class="card-header">
+                  Consulta de chamado
+                </div>
 
-              </div>
-            </div>
+                <div class="card-body">
 
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
+                  <?php foreach ($chamados as $chamado) { ?>
 
-              </div>
-            </div>
+                    <?php
+                    $chamado_dados = explode('#', $chamado);
 
-            <div class="row mt-5">
-              <div class="col-6">
-                <a href="home.php" class="btn btn-lg btn-warning btn-block" type="submit">Voltar</a>
+                    if (count($chamado_dados) < 3) {
+                      continue;
+                    }
+                    ?>
+                    <div class="card mb-3 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title"><?= $chamado_dados[0] ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[1] ?></h6>
+                        <p class="card-text"><?= $chamado_dados[2] ?></p>
+
+                      </div>
+                    </div>
+
+                  <?php } ?>
+
+                  <div class="row mt-5">
+                    <div class="col-6">
+                      <a href="home.php" class="btn btn-lg btn-warning btn-block" type="submit">Voltar</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>
