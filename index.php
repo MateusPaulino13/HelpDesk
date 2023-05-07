@@ -46,6 +46,12 @@
 
                 <? } ?>
 
+                <? if (isset($_GET['login']) && $_GET['login'] == "er2") { ?>
+
+                  <p class="text-danger">Faça Login para ter acesso!</p>
+
+                <? } ?>
+
               </div>
               <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
             </form>

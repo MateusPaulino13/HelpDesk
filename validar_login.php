@@ -4,6 +4,10 @@
 
 // $email = $_POST['email'];
 // $senha = $_POST['senha'];
+
+// Iniciando Sessão
+session_start();
+
 $usuario_autenticado = false;
 
 $usuarios = [
@@ -22,7 +26,9 @@ foreach ($usuarios as $user) {
     // Autenticando Usuário
     if ($usuario_autenticado) {
         echo "Usuário Autenticado";
+        $_SESSION['autenticado'] = "SIM";
     } else {
+        $_SESSION['autenticado'] = "NAO";
         header("Location: index.php?login=erro");
     }
 }
