@@ -33,26 +33,29 @@
             Login
           </div>
           <div class="card-body">
-            <form action="validar_login.php" method="post">
+            <form action="valida_login.php" method="post">
               <div class="form-group">
                 <input name="email" type="email" class="form-control" placeholder="E-mail">
               </div>
               <div class="form-group">
                 <input name="senha" type="password" class="form-control" placeholder="Senha">
-
-                <? if (isset($_GET['login']) && $_GET['login'] == "erro") { ?>
-
-                  <p class="text-danger">Usuário ou senha Inválido(s)</p>
-
-                <? } ?>
-
-                <? if (isset($_GET['login']) && $_GET['login'] == "er2") { ?>
-
-                  <p class="text-danger">Faça Login para ter acesso!</p>
-
-                <? } ?>
-
               </div>
+
+              <?php if (isset($_GET['login']) && $_GET['login'] == 'erro') { ?>
+
+                <div class="text-danger">
+                  Usuário ou senha inválido(s)
+                </div>
+
+              <?php } ?>
+              <?php if (isset($_GET['login']) && $_GET['login'] == 'erro2') { ?>
+
+                <p class="text-danger">
+                  Por favor faça o login para ter aceso!
+                </p>
+
+              <?php } ?>
+
               <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
             </form>
           </div>

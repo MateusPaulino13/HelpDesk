@@ -1,5 +1,6 @@
-<? require "validador_acesso.php" ?>
-
+<?php
+require_once "validador_acesso.php";
+?>
 <html>
 
 <head>
@@ -24,9 +25,11 @@
       <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
       App Help Desk
     </a>
-    <ul class="navbar-nav ">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="logoff.php">Sair</a>
+        <a href="logoff.php" class="nav-link">
+          Sair
+        </a>
       </li>
     </ul>
   </nav>
@@ -43,7 +46,7 @@
             <div class="row">
               <div class="col">
 
-                <form>
+                <form method="POST" action="registra_chamado.php">
                   <div class="form-group">
                     <label>Título</label>
                     <input name="titulo" type="text" class="form-control" placeholder="Título">
@@ -51,7 +54,7 @@
 
                   <div class="form-group">
                     <label>Categoria</label>
-                    <select name="categoria" class="form-control">
+                    <select class="form-control" name="categoria">
                       <option>Criação Usuário</option>
                       <option>Impressora</option>
                       <option>Hardware</option>
@@ -62,12 +65,12 @@
 
                   <div class="form-group">
                     <label>Descrição</label>
-                    <textarea name="categoria" class="form-control" rows="3"></textarea>
+                    <textarea name="descricao" class="form-control" rows="3"></textarea>
                   </div>
 
                   <div class="row mt-5">
                     <div class="col-6">
-                      <a href="home.php" class="btn btn-lg btn-warning btn-block" type="submit">Voltar</a>
+                      <a href="home.php" class="btn btn-lg btn-warning btn-block">Voltar</a>
                     </div>
 
                     <div class="col-6">
